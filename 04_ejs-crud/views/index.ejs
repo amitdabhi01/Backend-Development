@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+</head>
+
+<body>
+    <h1>Student List</h1>
+
+    <a href="/add">Add Student Data</a>
+
+    <ul>
+        <% studentList.forEach((s)=> { %>
+            <li>
+                <%=s.name%>
+                    <a href="/edit/:id">Edit</a>
+            </li>
+        <%})%>
+    </ul>
+</body>
+
+</html>
