@@ -44,6 +44,48 @@ app.post("/add", (req, res) => {
   res.redirect("/");
 });
 
+app.get("/edit/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const student = studentList.find((s) => s.id === id);
+
+  if (!student) {
+    return res.status(404).json("Student Not Found");
+  }
+
+  res.render("edit", { student });
+});
+
+app.post("/edit/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const student = studentList.find((s) => s.id === id);
+
+  if (!student) {
+    return res.status(404).json("Student Not Found");
+  }
+
+  const { name } = req.body;
+
+  student.name = name;
+
+  res.redirect("/");
+});
+
+app.get("/delete/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const student = studentList.find((s) => s.id === id);
+
+  if (!student) {
+    return res.status(404).json("Student Not Found");
+  }
+
+  studentList = studentList.filter((s) => s.id !== id);
+
+  res.redirect("/");
+});
+
 const port = 5000;
 
 app.listen(port, () => {
